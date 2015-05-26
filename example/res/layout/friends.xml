@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/tiledstripes" >
+   
+    
+    <LinearLayout  android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="20dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送好友请求"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="targetID:" />
+                
+                <EditText
+                    android:id="@+id/sendInvitation_targetID"
+                    style="@style/im_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="InvitationMsg:" />
+                
+                <EditText
+                    android:id="@+id/sendInvitation_InvitationMsg"
+                    style="@style/im_msg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/sendInvitation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="sendInvitation"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发送好友请求，后台执行"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="targetID:" />
+                
+                <EditText
+                    android:id="@+id/sendInvitationInBackground_targetID"
+                    style="@style/im_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="InvitationMsg:" />
+                
+                <EditText
+                    android:id="@+id/sendInvitationInBackground_InvitationMsg"
+                    style="@style/im_msg"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/sendInvitationInBackground"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="sendInvitationInBackground"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="接受好友请求，后台执行"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="friendID:" />
+                
+                <EditText
+                    android:id="@+id/acceptInvitationInBackground_friendID"
+                    style="@style/im_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/acceptInvitationInBackground"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="acceptInvitationInBackground"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="获取所有好友列表。只从本地获取。SDK 内部去做同步机制。"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/getFriendList"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="getFriendList"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>   
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+                
+                <EditText
+		            android:id="@+id/getFriendList_text"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="8dip"
+		            android:visibility="invisible" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="解除好友关系"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="friendID:" />
+                
+                <EditText
+                    android:id="@+id/deleteFriend_friendID"
+                    style="@style/im_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/deleteFriend"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="deleteFriend"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="将用户加入黑名单"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="targetID:" />
+                
+                <EditText
+                    android:id="@+id/addToBlackList_targetID"
+                    style="@style/im_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/addToBlackList"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="addToBlackList"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="将用户从黑名单中删除"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="targetID:" />
+                
+                <EditText
+                    android:id="@+id/removeFromBlackList_targetID"
+                    style="@style/im_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/removeFromBlackList"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="removeFromBlackList"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:layout_marginTop="10dip"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="更新备注名"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="targetID:" />
+                
+                <EditText
+                    android:id="@+id/updateNoteName_targetID"
+                    style="@style/im_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="noteName:" />
+                
+                <EditText
+                    android:id="@+id/updateNoteName_noteName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/updateNoteName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="updateNoteName"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    
+</ScrollView>

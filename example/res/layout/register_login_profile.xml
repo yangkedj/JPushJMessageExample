@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/tiledstripes" >
+   
+    
+    <LinearLayout  android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="20dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register &amp; Login 注册与登录"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="username:" />
+                
+                <EditText
+                    android:id="@+id/register_username"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="password:" />
+                
+                <EditText
+                    android:id="@+id/register_password "
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/register"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="register"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="username:" />
+                
+                <EditText
+                    android:id="@+id/login_username"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="password:" />
+                
+                <EditText
+                    android:id="@+id/login_password "
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/imlogin"
+                    android:layout_width="135dip"
+                    android:layout_height="wrap_content"
+                    android:text="imlogin"
+                    android:textSize="12sp" />
+                
+                <Button
+                    android:id="@+id/imlogout"
+                    android:layout_width="135dip"
+                    android:layout_height="wrap_content"
+                    android:text="imlogout"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+             android:padding="10dip" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile 维护"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/getCurrentUser_text"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/getCurrentUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="getCurrnetUser"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/getUserInfo_username"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/getUserInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="getUserInfo"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="oldPassword:" />
+                
+                <EditText
+                    android:id="@+id/updateUserPassword_oldPassword"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="newPassword:" />
+                
+                <EditText
+                    android:id="@+id/updateUserPassword_newPassword"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/updateUserPassword"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="updateUserPassword"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+        </LinearLayout>
+
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="nickname:" />
+                
+                <EditText
+                    android:id="@+id/updateUserNickName_nickname"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/updateUserNickName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="updateUserNickName"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="birthday:" />
+                
+                <EditText
+                    android:id="@+id/updateUserBirthday_birthday"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/updateUserBirthday"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="updateUserBirthday"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+        </LinearLayout>
+        
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="signature:" />
+                
+                <EditText
+                    android:id="@+id/updateUserSignature_signature"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/updateUserSignature"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="updateUserSignature"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="以下内容你可以不填，或者填写 男、女、未知，其它字符视为无效。" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="gender:" />
+                
+                <EditText
+                    android:id="@+id/updateUserGender_gender"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/updateUserGender"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="updateUserGender"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="region:" />
+                
+                <EditText
+                    android:id="@+id/updateUserRegion_region"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/updateUserRegion"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="updateUserRegion"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="avatar:" />
+                
+                <EditText
+                    android:id="@+id/updateUserAvatar_avatar"
+                    style="@style/im_msg"
+                    android:layout_width="160dip"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/updateUserAvatar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="updateUserAvatar"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    
+</ScrollView>

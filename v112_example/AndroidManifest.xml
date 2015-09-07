@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.jchat.android"
+    android:versionCode="18"
+    android:versionName="1.0.16">
+
+    <uses-sdk
+        android:minSdkVersion="7"
+        android:targetSdkVersion="19" />
+
+    <permission
+        android:name="io.jchat.android.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+  
+   <!-- Required -->
+    <uses-permission android:name="io.jchat.android.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- since 1.6.0 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:name="com.example.jpushdemo.ExampleApplication">
+        
+        
+        <service android:name="com.example.jpushdemo.LogService"></service>
+        
+        <!-- For test only 测试的主程序-->
+        <activity
+            android:name="com.example.jpushdemo.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+       <!-- For test only 测试高级功能 -->
+       <activity android:name="com.example.jpushdemo.PushSetActivity" android:label="@string/app_name"></activity>
+       <!-- For test only 测试IM功能主入口 -->
+       <activity android:name="com.example.jpushdemo.IMMainActivity" android:label="@string/app_name"></activity>
+       <!-- For test only 测试IM用户信息基本功能 -->
+       <activity android:name="com.example.jpushdemo.UsertestActivity" android:label="@string/app_name"></activity>
+       <!-- For test only 测试消息与会话基本功能 -->
+       <activity android:name="com.example.jpushdemo.MessageConversationActivity" android:label="@string/app_name"></activity>
+       <!-- For test only 群组维护基本功能 -->
+       <activity android:name="com.example.jpushdemo.GroupsActivity" android:label="@string/app_name"></activity>
+       <!-- For test only Notification设置基本功能 -->
+       <activity android:name="com.example.jpushdemo.NotificationSettingActivity" android:label="@string/app_name"></activity>
+       <!-- For test only 好友维护基本功能 -->
+       <activity android:name="com.example.jpushdemo.FriendsActivity" android:label="@string/app_name"></activity>
+       <!-- For test only 测试设置 -->
+       <activity android:name="com.example.jpushdemo.SettingActivity" android:label="@string/app_name"></activity>
+        <!-- For test only 测试状态通知栏，需要打开的Activity -->
+        <activity android:name="com.example.jpushdemo.TestActivity" >
+            <intent-filter>
+                <action android:name="jpush.testAction" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>  
+
+        <!-- Required SDK 核心功能-->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+                
+            </intent-filter>
+        </service>
+        
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true" >
+             <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+                <category android:name="io.jchat.android" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+             <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
+            </intent-filter>
+   
+        </receiver>
+        
+        <!-- Required -->
+        <receiver android:name="cn.jpush.im.android.helpers.IMReceiver"
+            android:enabled="true">
+            <intent-filter android:priority="1000">
+
+                <action android:name="cn.jpush.im.android.action.IM_RESPONSE"/>
+                <action android:name="cn.jpush.im.android.action.NOTIFICATION_CLICK_PROXY" />
+                <category android:name="io.jchat.android"/>
+            </intent-filter>
+         </receiver>
+         
+        <!-- Required SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="io.jchat.android" />
+            </intent-filter>
+        </activity>
+        <!-- Required SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false"></service>
+        <!-- Required SDK核心功能 -->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+        
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <receiver
+            android:name="com.example.jpushdemo.MyReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />  
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                
+               <!--  <action android:name="cn.jpush.im.android.ACTION_RECEIVE_IM_MESSAGE" /> -->
+                
+                <category android:name="io.jchat.android" />
+            </intent-filter>
+            
+        </receiver>
+ 
+        
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="4f7aef34fb361292c566a1cd" /> <!--  </>值来自开发者平台取得的AppKey-->
+                
+    </application>
+</manifest>

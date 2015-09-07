@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/tiledstripes" >
+   
+    
+    <LinearLayout  android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="20dip" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置通知类型 "
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="显示通知，有声音，有震动" />
+    
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/setNotificationMode_default"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="setNotificationMode_default"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="显示通知，无声音，有震动" />
+    
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/setNotificationMode_no_sound"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="setNotificationMode_no_sound"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="显示通知，有声音，无震动" />
+    
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/setNotificationMode_no_vibrate"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="setNotificationMode_no_vibrate"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+       
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="显示通知，无声音，无震动" />
+    
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/setNotificationMode_silence"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="setNotificationMode_silence"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="不显示通知" />
+    
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/setNotificationMode_no_notification"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="setNotificationMode_no_notification"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="进入聊天。UI在进入会话页面时需要调用此函数，SDK会根据传入的targetID来决定是否需要发送通知"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="targetId: " />
+                
+                <EditText
+                    android:id="@+id/enterConversaion_targetId"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/enterConversaionSigle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="enterConversaionSigle"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="groupId: " />
+                
+                <EditText
+                    android:id="@+id/enterConversaion_GroupId"
+                    style="@style/im_num"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="5dip"
+                    android:layout_marginRight="5dip"
+                    android:textSize="15sp" />
+    
+            </LinearLayout>
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/enterConversaionGroup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="enterConversaionSigle"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="#9C9C9C"
+            android:orientation="vertical"
+            android:padding="10dip" >
+
+         <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="向群组中移除成员退出聊天。UI在退出会话页面时需要调用此函数。"
+                android:textColor="#000" />
+        </LinearLayout>
+        
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="10dip"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical"
+            android:paddingBottom="20dip"
+            android:paddingTop="20dip" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/exitConversation"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="exitConversation"
+                    android:textSize="12sp" />
+    
+            </LinearLayout>            
+            
+        </LinearLayout>
+        
+    </LinearLayout>
+    
+    
+</ScrollView>

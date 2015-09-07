@@ -19,6 +19,7 @@ import cn.jpush.im.android.api.callback.GetGroupIDListCallback;
 import cn.jpush.im.android.api.callback.GetGroupInfoCallback;
 import cn.jpush.im.android.api.callback.GetGroupMembersCallback;
 import cn.jpush.im.android.api.model.GroupInfo;
+import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.api.BasicCallback;
 
 import com.test.v171.R;
@@ -93,7 +94,8 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 			Log.e(TAG_IM, "创建群组，groupLevel参数接口实际没用到");
 //			Toast.makeText(GroupsActivity.this,"groupLevel参数接口实际没用到", Toast.LENGTH_SHORT).show();	
 			
-			
+			for(int i = 1; i<= 101;i++)
+			{
 			JMessageClient.createGroup(createGroupName, createGroupDesc, new CreateGroupCallback() {
 				
 				@Override
@@ -106,7 +108,7 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 				}
 			});
 			
-			
+			}
 			
 			
             
@@ -119,6 +121,8 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 			String addGroupMemberGroupId = addGroupMemberGroupIdEdit.getText().toString().trim();
 			String addGroupMemberUserName = addGroupMemberUserNameEdit.getText().toString().trim();
 			
+			
+				
 			if (null == addGroupMemberGroupId || "".equals(addGroupMemberGroupId)) {
 				Log.d(TAG_IM, "groupId 参数没有输入");
 				Toast.makeText(GroupsActivity.this,"请输入groupId", Toast.LENGTH_SHORT).show();
@@ -132,6 +136,17 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 				
 				}
 				
+				/*addGroupMemberUserName ="";
+				for(int i=1;i<=199;i++)
+				{
+					addGroupMemberUserName = "USERA"+i;
+					userNameList.add(addGroupMemberUserName);
+				}*/
+				/***//*
+				for (int i=1;i<=199;i++)
+					userNameList.add("USER"+i);
+				*//***//*
+				*/
 				JMessageClient.addGroupMembers(Long.valueOf(addGroupMemberGroupId), userNameList, basicCallback);
 			}
 			
@@ -175,6 +190,7 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 					Toast.makeText(GroupsActivity.this,"responseCode="+responseCode+"  responseMessage="+responseMessage, Toast.LENGTH_SHORT).show();
 					if (responseCode == 0) {
 						if (null != groupIDList) {
+							Log.d(TAG_IM, "群组list个数为："+groupIDList.size());
 							TextView groupIDListEdit = (TextView) findViewById(R.id.getGroupIDList_groupId);
 							StringBuffer groupidBuffer = new StringBuffer();
 							for (Iterator iterator = groupIDList.iterator(); iterator.hasNext();) {
@@ -206,6 +222,8 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 						if (responseCode == 0) {
 							Log.e(TAG_IM, group.toString());
 						}
+						
+						Log.d(TAG_IM, "获取群组，通过getGroupMemberInfo接口"+group.getGroupMemberInfo(group.getGroupOwner()));
 					}
 				});
 			}
@@ -219,25 +237,15 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 				Log.d(TAG_IM, "groupId 参数没有输入");
 				Toast.makeText(GroupsActivity.this,"请输入groupId", Toast.LENGTH_SHORT).show();	
 			} else {
+				
 				JMessageClient.getGroupMembers(Long.valueOf(getGroupMember_groupId), new GetGroupMembersCallback() {
 					
 					@Override
-					public void gotResult(int responseCode,String responseMessage,List<String> members) {
-
-						Log.e(TAG_IM, "responseCode="+responseCode+" responseMessage"+responseMessage);
-						Toast.makeText(GroupsActivity.this,"responseCode="+responseCode+"  responseMessage"+responseMessage, Toast.LENGTH_SHORT).show();
-						if (responseCode == 0) {
-							if (null != members) {
-								StringBuffer groupidBuffer = new StringBuffer();
-								for (Iterator iterator = members.iterator(); iterator.hasNext();) {
-									String username = (String) iterator.next();
-									groupidBuffer.append(username);
-									groupidBuffer.append(",");
-								}
-								Log.d(TAG_IM, "群组成员数："+members.size());
-								Log.d(TAG_IM, groupidBuffer.toString().substring(0, groupidBuffer.toString().length()-1));
-							}
-						}					
+					public void gotResult(int arg0, String arg1, List<UserInfo> arg2) {
+						// TODO Auto-generated method stub
+						Log.e(TAG_IM, "responseCode="+arg0+" responseMessage"+arg1);
+						Toast.makeText(GroupsActivity.this,"responseCode="+arg0+"  responseMessage"+arg1, Toast.LENGTH_SHORT).show();
+						Log.e(TAG_IM,"groups members list = "+arg2);
 					}
 				});
 			}

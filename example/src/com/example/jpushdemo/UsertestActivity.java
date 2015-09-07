@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import cn.jpush.android.api.InstrumentedActivity;
 import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.DownloadAvatarCallback;
 import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.android.api.model.UserInfo.Gender;
@@ -96,16 +97,22 @@ public class UsertestActivity extends InstrumentedActivity implements
 			String regUserName = regUserNameEdit.getText().toString().trim();
 			String regUserPwd = regUserPwdEdit.getText().toString().trim();
 			
-			
-			
 			JMessageClient.register(regUserName, regUserPwd, basicCallback);
+			
+			
+			/*for(int i= 1;i<=199;i++)
+			{
+				regUserName = null;
+				regUserName = "USERA"+i;
+				JMessageClient.register(regUserName, "123456", basicCallback);
+			}*/
+			
 			break;
 		case R.id.imlogin:
 
 			EditText loginUserNameEdit = (EditText) findViewById(R.id.login_username);
 			EditText loginUserPwdEdit = (EditText) findViewById(R.id.login_password);
-			String loginUserName = loginUserNameEdit.getText().toString()
-					.trim();
+			String loginUserName = loginUserNameEdit.getText().toString().trim();
 			String loginUserPwd = loginUserPwdEdit.getText().toString().trim();
 
 			JMessageClient.login(loginUserName, loginUserPwd, basicCallback);
@@ -122,6 +129,11 @@ public class UsertestActivity extends InstrumentedActivity implements
 			break;
 		case R.id.getUserInfo:
 
+			/**
+			 * getAvatarFile是同步返回的 有可能本地还没下载到
+			 * getAvatarFileAsync是异步获取的，本地没有就会去下载
+			 *
+			 * */
 			EditText userNameEdit = (EditText) findViewById(R.id.getUserInfo_username);
 			String userName = userNameEdit.getText().toString().trim();
 
@@ -134,6 +146,23 @@ public class UsertestActivity extends InstrumentedActivity implements
 					if (responseCode == 0) {
 						Log.d(TAG_IM, "获取用户信息成功：");
 						getUserinfo(userInfo);
+						// 同步
+						Log.d(TAG_IM, "同步接口获取用户头像："+userInfo.getAvatarFile());
+						
+						// 异步
+						userInfo.getAvatarFileAsync(new DownloadAvatarCallback() {
+							
+							@Override
+							public void gotResult(int arg0, String arg1, File arg2) {
+								// TODO Auto-generated method stub
+								Log.d(TAG_IM, "异步获取头像回调："+arg0+"\n"+"msg"+arg1+"\n"+"File ："+arg2);
+								
+								if (arg0 == 0)
+								{
+									Log.d(TAG_IM, "异步获取头像"+arg2);
+								}
+							}
+						});
 					} else {
 						Toast.makeText(
 								UsertestActivity.this,
@@ -145,6 +174,7 @@ public class UsertestActivity extends InstrumentedActivity implements
 					}
 				}
 			});
+		
 			break;
 		case R.id.updateUserPassword:
 
@@ -154,10 +184,6 @@ public class UsertestActivity extends InstrumentedActivity implements
 			EditText newPwdEdit = (EditText) findViewById(R.id.updateUserPassword_newPassword);
 			String newPwd = newPwdEdit.getText().toString().trim();
 
-			/*for(int i =1;i<=128;i++)
-				oldPwd += "1";*/
-			
-			
 			JMessageClient.updateUserPassword(oldPwd, newPwd, basicCallback);
 			break;
 		case R.id.updateUserNickName:
@@ -165,14 +191,11 @@ public class UsertestActivity extends InstrumentedActivity implements
 			EditText nickNameEdit = (EditText) findViewById(R.id.updateUserNickName_nickname);
 			String nickName = nickNameEdit.getText().toString().trim();
 
-			
-			 /*for (int i = 1; i<=63;i++)
-			 nickName += "1";
-			 Log.i("YKIM", "昵称长度:"+nickName.length());*/
 			UserInfo usernick = JMessageClient.getMyInfo();
-			usernick.setNickname(nickName);
-			usernick.setBirthday(110110);
-			JMessageClient.updateMyInfo(UserInfo.Field.gender, usernick, basicCallback);
+			if(usernick != null){
+				usernick.setNickname(nickName);
+				JMessageClient.updateMyInfo(UserInfo.Field.nickname, usernick, basicCallback);
+			}
 			break;
 		case R.id.updateUserBirthday:
 
@@ -180,9 +203,11 @@ public class UsertestActivity extends InstrumentedActivity implements
 			String birthday = birthdayEdit.getText().toString().trim();
 			long bir = System.currentTimeMillis();
 			UserInfo userbirth = JMessageClient.getMyInfo();
-			Log.d(TAG_IM, "修改个人的生日时间为："+bir);
-			userbirth.setBirthday(bir);
-			JMessageClient.updateMyInfo(UserInfo.Field.birthday, userbirth, basicCallback);
+			if (userbirth != null){
+				Log.d(TAG_IM, "修改个人的生日时间为："+Long.valueOf(birthday));
+				userbirth.setBirthday(Long.valueOf(birthday));
+				JMessageClient.updateMyInfo(UserInfo.Field.birthday, userbirth, basicCallback);
+			}
 			break;
 		case R.id.updateUserSignature:
 
@@ -233,9 +258,10 @@ public class UsertestActivity extends InstrumentedActivity implements
 		case R.id.updateUserAvatar:
 
 			EditText avatarEdit = (EditText) findViewById(R.id.updateUserAvatar_avatar);
-			String avatar = avatarEdit.getText().toString().trim();
-
-			/*try {
+			//String avatar = avatarEdit.getText().toString().trim();
+			/*String avatar = "http://images.17173.com/2013/news/2013/01/10/lzy_01100924_01s.jpg";
+			
+			try {
 				URL imageURl = new URL(avatar);
 				URLConnection con = imageURl.openConnection();
 				con.connect();
@@ -249,8 +275,8 @@ public class UsertestActivity extends InstrumentedActivity implements
 			} catch (IOException e) {
 				Log.e(TAG_IM, "操作异常：" + e);
 			}*/
-
-			JMessageClient.updateUserAvatar(new File("/sdcard/JPushDemo/pictures/2015_0401_015754.jpg"), new BasicCallback() {
+//"/sdcard/DCIM/Camera/IMG20150108204863.jpg"
+			JMessageClient.updateUserAvatar(new File("/sdcard/DCIM/Camera/IMG20150108204836.jpg"), new BasicCallback() {
 				
 				@Override
 				public void gotResult(int arg0, String arg1) {
@@ -276,7 +302,7 @@ public class UsertestActivity extends InstrumentedActivity implements
 			buffer.append("getAvatar:").append(userInfo.getAvatar());
 			buffer.append(",");
 			buffer.append("getAvatarMediaID:").append(
-					userInfo.getAvatarMediaID());
+					userInfo.getAvatar());
 			buffer.append(",");
 			buffer.append("getBirthday:").append(userInfo.getBirthday());
 			buffer.append(",");
@@ -285,7 +311,7 @@ public class UsertestActivity extends InstrumentedActivity implements
 			buffer.append("getGender:").append(userInfo.getGender());
 			buffer.append(",");
 			buffer.append("getGenderString:")
-					.append(userInfo.getGenderString());
+					.append(userInfo.getGender());
 			buffer.append(",");
 			buffer.append("getNickname:").append(userInfo.getNickname());
 			buffer.append(",");

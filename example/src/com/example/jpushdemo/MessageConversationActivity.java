@@ -1,7 +1,6 @@
 package com.example.jpushdemo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 import android.os.Bundle;
@@ -13,9 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import cn.jpush.android.api.InstrumentedActivity;
 import cn.jpush.im.android.api.JMessageClient;
-import cn.jpush.im.android.api.content.ImageContent;
+import cn.jpush.im.android.api.content.CustomContent;
 import cn.jpush.im.android.api.content.TextContent;
-import cn.jpush.im.android.api.content.VoiceContent;
 import cn.jpush.im.android.api.enums.ConversationType;
 import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.Message;
@@ -76,13 +74,13 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 			EditText single_targetidEdit = (EditText) findViewById(R.id.sendMessageSingle_targetId);
 			EditText single_contentEdit = (EditText) findViewById(R.id.sendMessageSingle_content);
 			
-			String mTargetID = single_targetidEdit.getText().toString().trim();
+			final String mTargetID = single_targetidEdit.getText().toString().trim();
 			final String singleMsgContent = single_contentEdit.getText().toString().trim();
 			
 			final Conversation singleConv = JMessageClient.getSingleConversation(mTargetID);
 			if (null != singleConv) {
-				
-				new Thread(new Runnable() {
+			
+				/*new Thread(new Runnable() {
 					
 					@Override
 					public void run() {
@@ -91,19 +89,50 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 							TextContent singleContent = new TextContent(singleMsgContent);
 							
 							final Message singleMsg = singleConv.createSendMessage(singleContent);
+							
+							Log.d(TAG_IM, "会话时间"+singleMsg.getCreateTime());
+							
 							//singleMsg.setOnSendCompleteCallback(basicCallback);
+							Log.d(TAG_IM, "=====send notification======");
 							JMessageClient.sendMessage(singleMsg);
 							
-							try {
-								Thread.sleep(1000);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						
+// 							发送自定义消息
+							HashMap<String, String>  hashMap = new HashMap<String, String>();
+							hashMap.put("key", "value");
 							
-							// 发送语音
-							/*try {
+							Message singlgCusMsg = JMessageClient.createSingleCustomMessage(mTargetID, hashMap);
+							Log.d(TAG_IM, "=====send Message（自定义消息）======");
+							JMessageClient.sendMessage(singlgCusMsg); 
+							
+							CustomContent customContent = new CustomContent();
+							
+							// bool
+							customContent.setBooleanValue("boolValue", false);
+							customContent.setBooleanExtra("boolExtra", true);
+							// number
+							int i = 1212;
+							int j = 33333;
+							customContent.setNumberValue("NumberValues", i);
+							customContent.setNumberExtra("NumberExtras", j);
+							
+							customContent.setStringValue("StringValues", "字符串的值");
+							customContent.setStringExtra("StringExtras", "字符串附加字段");
+				
+							
+							
+							JMessageClient.sendMessage(singleConv.createSendMessage(customContent));
+							
+//							发送过长的文本信息
+							final String singleLongMsgContent = "饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地一二三";
+							TextContent singleLongContent = new TextContent(singleLongMsgContent);
+							final Message singleLongMsg = singleConv.createSendMessage(singleLongContent);
+							//singleMsg.setOnSendCompleteCallback(basicCallback);
+							Log.d(TAG_IM, "=====send Long Message notification======");
+							Log.d(TAG_IM, "");
+							JMessageClient.sendMessage(singleLongMsg);
+						
+//                          发送语音
+							try {
 								
 								Log.d(TAG_IM, "=====发送语音=====");
 								
@@ -115,10 +144,10 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 							} catch (FileNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
-							}*/
+							}
 							
-							// 发送图片
-							/*Log.d(TAG_IM, "=====发送图片=====");
+//                          发送图片
+							Log.d(TAG_IM, "=====发送图片=====");
 							
 							try {
 								ImageContent imageContent = new ImageContent(new File("/sdcard/Pictures/01.png"));
@@ -129,7 +158,26 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 							} catch (FileNotFoundException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
-							}*/
+							}
+					}
+				}).start();*/
+				
+				//电量测试：
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						for(int i = 1;i<=1000;i++)
+						{
+							JMessageClient.sendMessage(JMessageClient.createSingleTextMessage(mTargetID, String.valueOf(i)));
+							try {
+								Thread.sleep(500);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}	
 					}
 				}).start();
 				
@@ -143,10 +191,28 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 					Log.e(TAG_IM, "sendMessageSingle_targetId不存在");
 					Toast.makeText(MessageConversationActivity.this,"sendMessageSingle_targetId不存在", Toast.LENGTH_SHORT).show();	
 				}else {
+					
+			
 					TextContent singleContent = new TextContent(singleMsgContent);
 		            final Message singleMsg = singleConvNew.createSendMessage(singleContent);
 		            singleMsg.setOnSendCompleteCallback(basicCallback);
+		            Log.d(TAG_IM, "=====send notification======");
 		            JMessageClient.sendMessage(singleMsg);
+		            
+		            
+		            CustomContent customContent = new CustomContent();
+					customContent.setBooleanValue("boolValue", false);
+					customContent.setBooleanExtra("boolExtra", true);
+					
+					JMessageClient.sendMessage(singleConv.createSendMessage(customContent));
+//					发送自定义消息
+		            /*HashMap<String, String>  hashMap = new HashMap<String, String>();
+					hashMap.put("key", "value");
+					hashMap.put("chuang", "k");
+					
+					Message singlgCusMsg = JMessageClient.createSingleCustomMessage(mTargetID, hashMap);
+					Log.d(TAG_IM, "=====send Message======");
+					JMessageClient.sendMessage(singlgCusMsg); */
 				}
 			}
             
@@ -163,11 +229,18 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 			Conversation groupConv = JMessageClient.getGroupConversation(mGroupID);
 			if (null != groupConv) {
 				
-				TextContent groupContent = new TextContent("组消息顺序编号");
+				/*TextContent groupContent = new TextContent("组消息顺序编号");
 		        final Message groupMsg = groupConv.createSendMessage(groupContent);
-		        //groupMsg.setOnSendCompleteCallback(basicCallback);
-		        JMessageClient.sendMessage(groupMsg);
+		        groupMsg.setOnSendCompleteCallback(basicCallback);
+		        JMessageClient.sendMessage(groupMsg);*/
 			
+//				发送自定义消息
+	            HashMap<String, String>  hashMap = new HashMap<String, String>();
+				hashMap.put("key", "value");
+				hashMap.put("Group", "JPush");
+				
+				Message GroupCusMsg = JMessageClient.createGroupCustomMessage(mGroupID, hashMap);
+				JMessageClient.sendMessage(GroupCusMsg); 
 				
 			} else {
 				Conversation  groupConvNew = Conversation.createConversation(ConversationType.group, mGroupID);
@@ -175,10 +248,18 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 					Log.e(TAG_IM, "sendMessageGroup_groupId不存在");
 					Toast.makeText(MessageConversationActivity.this,"sendMessageGroup_groupId不存在", Toast.LENGTH_SHORT).show();	
 				}else {
-					TextContent groupContent = new TextContent(groupMsgContent);
+					/*TextContent groupContent = new TextContent(groupMsgContent);
 		            final Message groupMsg = groupConvNew.createSendMessage(groupContent);
 		            groupMsg.setOnSendCompleteCallback(basicCallback);
-		            JMessageClient.sendMessage(groupMsg); 
+		            JMessageClient.sendMessage(groupMsg); */
+		            
+//					发送自定义消息
+		            HashMap<String, String>  hashMap = new HashMap<String, String>();
+					hashMap.put("key", "value");
+					hashMap.put("Group", "JPush");
+					
+					Message GroupCusMsg = JMessageClient.createGroupCustomMessage(mGroupID, hashMap);
+					JMessageClient.sendMessage(GroupCusMsg); 
 				}
 			}
 			break;
@@ -200,7 +281,7 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 			if (null != conversationSingle) {
 				List<Message> messageList = conversationSingle.getAllMessage();
 				Toast.makeText(MessageConversationActivity.this,"会话实体得到的message数量为："+messageList.size(), Toast.LENGTH_SHORT).show();
-				Log.d(TAG_IM,"会话实体得到的message数量为："+messageList.size());
+				Log.d(TAG_IM,"会话实体得到的message数量为："+messageList.size()+"\n"+"会话内容："+messageList);
 			}else {
 				Toast.makeText(MessageConversationActivity.this,"获取到的会话实体为null", Toast.LENGTH_SHORT).show();
 				Log.d(TAG_IM,"获取到的会话实体为null");

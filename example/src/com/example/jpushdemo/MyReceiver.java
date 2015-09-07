@@ -25,10 +25,10 @@ public class MyReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
-		
         if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
             String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
             Log.d(TAG, "[MyReceiver] 接收Registration Id : " + regId);
+            
             //send the Registration Id to your server...
                         
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
@@ -41,7 +41,7 @@ public class MyReceiver extends BroadcastReceiver {
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
         	
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
-            Log.d(TAG, "[MyReceiver] 用户点击打开了通知");
+            Log.e(TAG, "[MyReceiver] 用户点击打开了通知");
             
         	//打开自定义的Activity
         	Intent i = new Intent(context, TestActivity.class);
@@ -57,6 +57,7 @@ public class MyReceiver extends BroadcastReceiver {
         } else if(JPushInterface.ACTION_CONNECTION_CHANGE.equals(intent.getAction())) {
         	boolean connected = intent.getBooleanExtra(JPushInterface.EXTRA_CONNECTION_CHANGE, false);
         	Log.w(TAG, "[MyReceiver]" + intent.getAction() +" connected state change to "+connected);
+        	Log.e("yk", "网络连接状态变化："+connected);
         } else {
         	Log.d(TAG, "[MyReceiver] Unhandled intent - " + intent.getAction());
         }

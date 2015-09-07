@@ -12,7 +12,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import cn.jpush.android.api.InstrumentedActivity;
 import cn.jpush.android.api.JPushInterface;
 
 import com.test.v171.R;
@@ -82,6 +81,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.init:
 			init();
+			JPushInterface.setLatestNotificationNumber(this, 1);
 			break;
 		case R.id.setting:
 			Intent intent = new Intent(MainActivity.this, PushSetActivity.class);

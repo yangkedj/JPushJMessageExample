@@ -1,7 +1,11 @@
 package com.example.jpushdemo;
 
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.im.android.api.JMessageClient;
@@ -22,5 +26,19 @@ public class ExampleApplication extends Application {
          JMessageClient.init(getApplicationContext());
          JPushInterface.setDebugMode(true);
          new MessageEventReceiver(getApplicationContext());
+        // swapEnvironment(true);
     }
-}
+
+
+private void swapEnvironment(boolean isTest){
+    try {
+        Method method = JMessageClient.class.getDeclaredMethod("swapEnvironment", Context.class, Boolean.class);
+        method.invoke(null, this, isTest);
+    } catch (NoSuchMethodException e) {
+        e.printStackTrace();
+    } catch (InvocationTargetException e) {
+        e.printStackTrace();
+    } catch (IllegalAccessException e) {
+        e.printStackTrace();
+    }
+}}

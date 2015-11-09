@@ -1,5 +1,7 @@
 package com.example.jpushdemo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import cn.jpush.android.api.InstrumentedActivity;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.content.CustomContent;
+import cn.jpush.im.android.api.content.ImageContent;
 import cn.jpush.im.android.api.content.TextContent;
 import cn.jpush.im.android.api.enums.ConversationType;
 import cn.jpush.im.android.api.model.Conversation;
@@ -80,13 +83,26 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 			final Conversation singleConv = JMessageClient.getSingleConversation(mTargetID);
 			if (null != singleConv) {
 			
-				/*new Thread(new Runnable() {
+				Log.d("Conv", "旧接口getTargetID()"+singleConv.getTargetId());
+				
+				Log.d("Conv", "新接口"+singleConv.getTargetInfo());
+				
+				Log.d("Conv", "旧接口getLatestText()"+singleConv.getLatestText());
+				Log.d("Conv", "旧接口getLatestType()"+singleConv.getLatestType());
+				Log.d("Conv", "旧接口getLatestMsgDate()"+singleConv.getLastMsgDate());
+				Log.d("Conv", "新接口"+singleConv.getLatestMessage());
+				
+				
+				new Thread(new Runnable() {
 					
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
 						
+						
 							TextContent singleContent = new TextContent(singleMsgContent);
+							
+							
 							
 							final Message singleMsg = singleConv.createSendMessage(singleContent);
 							
@@ -94,18 +110,48 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 							
 							//singleMsg.setOnSendCompleteCallback(basicCallback);
 							Log.d(TAG_IM, "=====send notification======");
+							
+							singleMsg.setOnSendCompleteCallback(new BasicCallback() {
+								
+								@Override
+								public void gotResult(int arg0, String arg1) {
+									// TODO Auto-generated method stub
+									Log.d("JPush", "发送消息的返回码=="+arg0+"message=="+arg1);
+									
+								}
+							});
 							JMessageClient.sendMessage(singleMsg);
 							
+							
+							
 // 							发送自定义消息
+							
+							/*
 							HashMap<String, String>  hashMap = new HashMap<String, String>();
 							hashMap.put("key", "value");
+							hashMap.put("android", "自定义消息");
 							
 							Message singlgCusMsg = JMessageClient.createSingleCustomMessage(mTargetID, hashMap);
 							Log.d(TAG_IM, "=====send Message（自定义消息）======");
+							Log.d("Conver", "singlgCusMsg = "+singlgCusMsg);
+							if(null != singlgCusMsg)
+							{
+							singlgCusMsg.setOnSendCompleteCallback(new BasicCallback() {
+								
+								@Override
+								public void gotResult(int arg0, String arg1) {
+									// TODO Auto-generated method stub
+									Log.d("JPush", "发送消息的返回码=="+arg0+"message=="+arg1);
+									
+								}
+							});
 							JMessageClient.sendMessage(singlgCusMsg); 
 							
+							}
+							*/
+
 							CustomContent customContent = new CustomContent();
-							
+							/*
 							// bool
 							customContent.setBooleanValue("boolValue", false);
 							customContent.setBooleanExtra("boolExtra", true);
@@ -114,97 +160,167 @@ public class MessageConversationActivity extends InstrumentedActivity implements
 							int j = 33333;
 							customContent.setNumberValue("NumberValues", i);
 							customContent.setNumberExtra("NumberExtras", j);
-							
+							// string
 							customContent.setStringValue("StringValues", "字符串的值");
 							customContent.setStringExtra("StringExtras", "字符串附加字段");
-				
-							
+							*/
+							customContent.setStringValue("", "");
+							customContent.setStringExtra("", "");
 							
 							JMessageClient.sendMessage(singleConv.createSendMessage(customContent));
 							
+							
+							
 //							发送过长的文本信息
-							final String singleLongMsgContent = "饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地一二三";
-							TextContent singleLongContent = new TextContent(singleLongMsgContent);
+							// 1333个中文
+							
+							/*
+							final String singleLongMsgContent_4000 = "你我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我";
+							TextContent singleLongContent = new TextContent(singleLongMsgContent_4000);
 							final Message singleLongMsg = singleConv.createSendMessage(singleLongContent);
 							//singleMsg.setOnSendCompleteCallback(basicCallback);
 							Log.d(TAG_IM, "=====send Long Message notification======");
-							Log.d(TAG_IM, "");
-							JMessageClient.sendMessage(singleLongMsg);
-						
-//                          发送语音
-							try {
-								
-								Log.d(TAG_IM, "=====发送语音=====");
-								
-								VoiceContent voiceContent = new VoiceContent(new File("/sdcard/Music/You Are Beautiful.mp3"), 60);
-								
-								final Message voiceMessage = singleConv.createSendMessage(voiceContent);
-								
-								JMessageClient.sendMessage(voiceMessage);
-							} catch (FileNotFoundException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 							
+							//singleLongMsg.setOnSendCompleteCallback
+							singleLongMsg.setOnSendCompleteCallback(new BasicCallback() {
+								
+								@Override
+								public void gotResult(int arg0, String arg1) {
+									// TODO Auto-generated method stub
+									Log.d("JPush", "发送4k大小消息的返回码=="+arg0+"message=="+arg1);
+									
+								}
+							});
+							JMessageClient.sendMessage(singleLongMsg);
+							
+							*/
+						
+						
+							//= "饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地忒图书馆进行公开新客户端看过的饿哦也哦也都看过大快朵颐恶化先哭后笑异地一二三";
+							/*
+							final String singleLongMsgContent = "xiaoxi!";
+							TextContent singleLongContent1 = new TextContent(singleLongMsgContent);
+							final Message singleLongMsg1 = singleConv.createSendMessage(singleLongContent1);
+							//singleMsg.setOnSendCompleteCallback(basicCallback);
+				
+							singleLongMsg1.setOnSendCompleteCallback(new BasicCallback() {
+								
+								@Override
+								public void gotResult(int arg0, String arg1) {
+									// TODO Auto-generated method stub
+									Log.d("JPush", "发送消息的返回码=="+arg0+"message=="+arg1);
+									
+								}
+							});
+							JMessageClient.sendMessage(singleLongMsg1);
+							*/
+////                          发送语音
+//							try {
+//								
+//								Log.d(TAG_IM, "=====发送语音=====");
+//								
+//								VoiceContent voiceContent = new VoiceContent(new File("/sdcard/Music/You Are Beautiful.mp3"), 60);
+//								
+//								final Message voiceMessage = singleConv.createSendMessage(voiceContent);
+//								
+//								JMessageClient.sendMessage(voiceMessage);
+//							} catch (FileNotFoundException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//							
 //                          发送图片
 							Log.d(TAG_IM, "=====发送图片=====");
 							
-							try {
-								ImageContent imageContent = new ImageContent(new File("/sdcard/Pictures/01.png"));
+							//ImageContent imageContent = new ImageContent(new File("/sdcard/Pictures/01.png"));
+							/*
+							ImageContent.createImageContentAsync(new File("/sdcard/Pictures/01.png"), new ImageContent.CreateImageContentCallback() {
 								
-								final Message imageMessage = singleConv.createSendMessage(imageContent);
-								
-								JMessageClient.sendMessage(imageMessage);
-							} catch (FileNotFoundException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-					}
-				}).start();*/
-				
-				//电量测试：
-				new Thread(new Runnable() {
-					
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						for(int i = 1;i<=1000;i++)
-						{
-							JMessageClient.sendMessage(JMessageClient.createSingleTextMessage(mTargetID, String.valueOf(i)));
-							try {
-								Thread.sleep(500);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						}	
+								@Override
+								public void gotResult(int arg0, String arg1, ImageContent arg2) {
+									// TODO Auto-generated method stub
+									
+									Log.d("myIma","创建本地图片返回码===="+arg0 );
+									
+									final Message imageMessage = singleConv.createSendMessage(arg2);
+									imageMessage.setOnSendCompleteCallback(new BasicCallback() {
+										
+										@Override
+										public void gotResult(int arg0, String arg1) {
+											// TODO Auto-generated method stub
+											Log.d("myIma","发送图片返回码===="+arg0 );
+										}
+									});
+									JMessageClient.sendMessage(imageMessage);
+									
+								}
+							});
+							
+							*/
 					}
 				}).start();
 				
+				//电量测试：
+//				new Thread(new Runnable() {
+//					
+//					@Override
+//					public void run() {
+//						// TODO Auto-generated method stub
+//						for(int i = 1;i<=1000;i++)
+//						{
+//							JMessageClient.sendMessage(JMessageClient.createSingleTextMessage(mTargetID, String.valueOf(i)));
+//							try {
+//								Thread.sleep(500);
+//							} catch (InterruptedException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//						}	
+//					}
+//				}).start();
+//				
 				
 				
 			} else {
-				Conversation singleConvNew = Conversation.createConversation(ConversationType.single, mTargetID);
-				
+				// Conversation singleConvNew= Conversation.createConversation(ConversationType.single, mTargetID);
+				Conversation singleConvNew = Conversation.createSingleConversation(mTargetID);
 		       
+				
 				if (null == singleConvNew) {					
 					Log.e(TAG_IM, "sendMessageSingle_targetId不存在");
 					Toast.makeText(MessageConversationActivity.this,"sendMessageSingle_targetId不存在", Toast.LENGTH_SHORT).show();	
 				}else {
+							
+					Log.d("Conv", "旧接口getTargetID()"+singleConvNew.getTargetId());
+					
+					Log.d("Conv", "新接口"+singleConvNew.getTargetInfo());
+					
+					Log.d("Conv", "旧接口getLatestText()"+singleConvNew.getLatestText());
+					Log.d("Conv", "旧接口getLatestType()"+singleConvNew.getLatestType());
+					Log.d("Conv", "旧接口getLatestMsgDate()"+singleConvNew.getLastMsgDate());
+					Log.d("Conv", "新接口"+singleConvNew.getLatestMessage());
+					
+					
+					
 					
 			
 					TextContent singleContent = new TextContent(singleMsgContent);
 		            final Message singleMsg = singleConvNew.createSendMessage(singleContent);
-		            singleMsg.setOnSendCompleteCallback(basicCallback);
-		            Log.d(TAG_IM, "=====send notification======");
-		            JMessageClient.sendMessage(singleMsg);
-		            
-		            
+		            Log.d("Conver", "singlemsg = "+singleMsg);
+		            if(null != singleMsg)
+		            {
+		            	singleMsg.setOnSendCompleteCallback(basicCallback);
+		            	Log.d(TAG_IM, "=====send notification======");
+		            	JMessageClient.sendMessage(singleMsg);
+		            }
+		            /*
 		            CustomContent customContent = new CustomContent();
 					customContent.setBooleanValue("boolValue", false);
 					customContent.setBooleanExtra("boolExtra", true);
 					
 					JMessageClient.sendMessage(singleConv.createSendMessage(customContent));
+					*/
+		            
 //					发送自定义消息
 		            /*HashMap<String, String>  hashMap = new HashMap<String, String>();
 					hashMap.put("key", "value");

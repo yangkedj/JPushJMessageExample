@@ -8,6 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import cn.jpush.android.api.InstrumentedActivity;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetBlacklistCallback;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.api.BasicCallback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.test.v171.R;
 
@@ -23,7 +30,7 @@ public class FriendsActivity extends InstrumentedActivity implements OnClickList
 	private Button mAddToBlackList;
 	private Button mRemoveFromBlackList;
 	private Button mUpdateNoteName;
-
+	private Button mFriendBlackList;
 	
 	@Override
 	public void onCreate(Bundle icicle) {
@@ -57,6 +64,9 @@ public class FriendsActivity extends InstrumentedActivity implements OnClickList
 
 		mUpdateNoteName = (Button)findViewById(R.id.updateNoteName);
 		mUpdateNoteName.setOnClickListener(this);
+		
+		mFriendBlackList = (Button)findViewById(R.id.FriendBlackList);
+		mFriendBlackList.setOnClickListener(this);
 
 	}
 	
@@ -122,6 +132,10 @@ public class FriendsActivity extends InstrumentedActivity implements OnClickList
 			
 			break;
 		case R.id.addToBlackList:
+			List<String> Ladd = new ArrayList<String>();
+			// Ladd = null;
+			// Ladd = 为空集合;
+			
 			EditText addToBlackListTargetIdEdit = (EditText) findViewById(R.id.addToBlackList_targetID);			
 			String addToBlackListTargetId = addToBlackListTargetIdEdit.getText().toString().trim();
 			
@@ -130,21 +144,72 @@ public class FriendsActivity extends InstrumentedActivity implements OnClickList
 				Toast.makeText(FriendsActivity.this,"请输入targetId", Toast.LENGTH_SHORT).show();				
 			} else {
 				
+				String[] sArray = addToBlackListTargetId.split(",");
+				//Set<String> tagSet = new LinkedHashSet<String>();
+				for (String sTagItme : sArray) {
+					Ladd.add(sTagItme);
+				}
+				
+				
+				JMessageClient.addUsersToBlacklist(Ladd, new BasicCallback() {
+					
+					@Override
+					public void gotResult(int arg0, String arg1) {
+						// TODO Auto-generated method stub
+						Log.d("JPush","添加黑名单返回码=="+arg0+"\n 信息为"+arg1 );
+						Toast.makeText(FriendsActivity.this,"添加黑名单返回码=="+arg0+"\n 信息为"+arg1 , Toast.LENGTH_SHORT).show();				
+						
+					}
+				});
 			}
 			
 			break;
 		case R.id.removeFromBlackList:
+			List<String> L_delete = new ArrayList<String>();
+			// L_delete = null
+			// L_delete 空集合
+			
 			EditText removeFromBlackListTargetIdEdit = (EditText) findViewById(R.id.removeFromBlackList_targetID);			
 			String removeFromBlackListTargetId = removeFromBlackListTargetIdEdit.getText().toString().trim();
 			
 			if (null == removeFromBlackListTargetId || "".equals(removeFromBlackListTargetId)) {
 				Log.d(TAG_IM, "targetId 参数没有输入");
 				Toast.makeText(FriendsActivity.this,"请输入targetId", Toast.LENGTH_SHORT).show();				
-			} else {
+			} else {			
+				String[] sArray_d = removeFromBlackListTargetId.split(",");
+				//Set<String> tagSet = new LinkedHashSet<String>();
+				for (String sTagItme : sArray_d) {
+					L_delete.add(sTagItme);
+				}
 				
+				//L_delete = null;
+				
+				JMessageClient.delUsersFromBlacklist(L_delete, new BasicCallback() {
+					
+					@Override
+					public void gotResult(int arg0, String arg1) {
+						// TODO Auto-generated method stub
+						Log.d("JPush","移除黑名单返回码=="+arg0+"\n 信息为"+arg1 );
+						Toast.makeText(FriendsActivity.this,"移除黑名单返回码=="+arg0+"\n 信息为"+arg1 , Toast.LENGTH_SHORT).show();				
+						
+					}
+				});
 			}
 			
 			break;
+			
+		case R.id.FriendBlackList:
+			JMessageClient.getBlacklist(new GetBlacklistCallback() {
+				
+				@Override
+				public void gotResult(int arg0, String arg1, List<UserInfo> arg2) {
+					// TODO Auto-generated method stub
+					Log.d("JPush","我拉黑的用户，返回码=="+arg0+"\n 信息为"+arg2 );
+					Toast.makeText(FriendsActivity.this,"当前用户黑名单列表="+arg2+"返回码=="+arg0+"\n 信息为"+arg1 , Toast.LENGTH_SHORT).show();				
+					
+				}
+			});
+			
 		case R.id.updateNoteName:
 			EditText updateNoteName_targetIdEdit = (EditText) findViewById(R.id.updateNoteName_targetID);
 			

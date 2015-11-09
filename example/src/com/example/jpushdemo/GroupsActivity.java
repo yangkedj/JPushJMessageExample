@@ -94,8 +94,7 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 			Log.e(TAG_IM, "创建群组，groupLevel参数接口实际没用到");
 //			Toast.makeText(GroupsActivity.this,"groupLevel参数接口实际没用到", Toast.LENGTH_SHORT).show();	
 			
-			for(int i = 1; i<= 101;i++)
-			{
+			
 			JMessageClient.createGroup(createGroupName, createGroupDesc, new CreateGroupCallback() {
 				
 				@Override
@@ -108,10 +107,6 @@ public class GroupsActivity extends InstrumentedActivity implements OnClickListe
 				}
 			});
 			
-			}
-			
-			
-            
 			break;
 		case R.id.addGroupMembers:
 
